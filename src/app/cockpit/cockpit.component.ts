@@ -6,7 +6,8 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
   styleUrls: ['./cockpit.component.css']
 })
 export class CockpitComponent implements OnInit {
-  @Output() serverAdded = new EventEmitter();
+  @Output() serverAdded = new EventEmitter();   // without alias
+  @Output('bpAdded') serverBlueprintAdded = new EventEmitter();   // with alias
   newServerName;
   newServerContent = '';
   constructor() { }
@@ -14,23 +15,11 @@ export class CockpitComponent implements OnInit {
   ngOnInit() {
   }
 
-  onServerCreated() {
-
-  }
   onAddServer() {
     this.serverAdded.emit({name: this.newServerName, content: this.newServerContent});
-    // this.serverElements.push({
-    //   type: 'server',
-    //   name: this.newServerName,
-    //   content: this.newServerContent
-    // });
   }
 
   onAddBlueprint() {
-    // this.serverElements.push({
-    //   type: 'blueprint',
-    //   name: this.newServerName,
-    //   content: this.newServerContent
-    // });
+    this.serverBlueprintAdded.emit({name: this.newServerName, content: this.newServerContent});
   }
 }
